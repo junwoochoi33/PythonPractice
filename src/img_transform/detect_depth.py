@@ -1,18 +1,28 @@
 import numpy as np
 from PIL import Image, ImageFilter
 
+from src.img_transform.laplacian import laplacian
 
-def detect_depth(image_path='../images/Simba.png'):
 
-    # 이미지 열기 및 흑백 변환 (명암차 분석을 위해 Grayscale 사용)
+def detect_depth(image_path='../images/Eiffle.png'):
+
+    # 1. Grayscale로 변환
     img = Image.open(image_path).convert('L')
-
-    # 이미지를 numpy 배열로 변환
     img_arr = np.array(img, dtype=np.float32)
 
-    # Sobel 필터를 사용하여 엣지 검출
-    sobel_x = np.array([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
-    sobel_y = np.array([[-1, -2, -1],[0, 0, 0],[1, 2, 1]])
+    # 2. Gaussian Blur 적용
+    blurred = img.filter(ImageFilter.GaussianBlur(5))
+    blurred_arr = np.array(blurred, dtype=np.float32)
+
+    # 3. 원본과 블러된 이미지 차이 계산
+    depth_map = np.abs(img_arr - blurred_arr)
+
+    # 4. Laplacian 필터 적용
+    laplacian_kernel = np.array([
+        [1, 1, 1],
+        [1, -8, 1],
+        [1, 1, 1]
+    ])
 
     def convolve2d(image, kernel):
         h, w = image.shape
@@ -27,11 +37,21 @@ def detect_depth(image_path='../images/Simba.png'):
 
         return result
 
-    grad_x = convolve2d(img_arr, sobel_x)
-    grad_y = convolve2d(img_arr, sobel_y)
+    laplacian = convolve2d(img_arr, laplacian_kernel)
 
-    # Gradient Magnitude 계산 (엣지 강도)
-    depth_map = np.sqrt(grad_x**2 + grad_y**2)
-    depth_map = (depth_map / np.max(depth_map) * 255).astype(np.uint8) # 정규화
+    # 5. 두 결과를 결합하여 깊이 맵 생서
+    combined_depth = depth_map + np.abs(laplacian)
 
-    Image.fromarray(depth_map).show()
+    # 6. 후처리
+    # 1) 정규화 (0~255 범위로 변환)
+    combined_depth = (combined_depth / combined_depth.max() * 255).astype(np.uint8) # 정규화
+    # 2) Gaussian Blur 적용
+    depth_image = Image.fromarray(combined_depth)
+    smoothed_depth = depth_image.filter(ImageFilter.GaussianBlur(radius=3))
+    # 3) Gamma Correction
+    gamma = 1.1
+    depth_array = np.array(smoothed_depth, dtype=np.float32) / 255.0
+    depth_array = np.power(depth_array, gamma) * 255.0
+    depth_array = depth_array.astype(np.uint8)
+
+    Image.fromarray(depth_array).show()
