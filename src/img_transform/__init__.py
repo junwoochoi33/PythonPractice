@@ -1,2 +1,2 @@
 
-__all__ = ["scaling"]
+__all__ = ["scaling", "laplacian", "detect_depth"]

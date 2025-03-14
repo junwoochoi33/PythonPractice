@@ -1,9 +1,8 @@
-from src.img_transform.laplacian import laplacian
-from src.img_transform.scaling import scaling
+from src.img_transform.detect_depth import detect_depth
 
 
 def start():
     print("Application started!")
 
     # 테스트
-    laplacian()
+    detect_depth()
