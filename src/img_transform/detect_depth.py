@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image, ImageFilter
 
 
-def detect_depth(image_path='../images/Doge.jpg'):
+def detect_depth(image_path='../images/Simba.png'):
 
     # 이미지 열기 및 흑백 변환 (명암차 분석을 위해 Grayscale 사용)
     img = Image.open(image_path).convert('L')
