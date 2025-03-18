@@ -1,6 +1,6 @@
 from PIL import Image
 
-def scaling(image_path='../images/Doge.jpg', scale=1.5):
+def scale(image_path='../images/Doge.jpg', scale=1.5):
 
     # 이미지 열기
     img = Image.open(image_path).convert('RGB')
