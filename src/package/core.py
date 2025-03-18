@@ -1,4 +1,4 @@
-from src.img_transform.detect_depth import detect_depth
+from src.image_transform.detect_depth import detect_depth
 
 
 def start():

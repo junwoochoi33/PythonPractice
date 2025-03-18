@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image, ImageFilter
 
-from src.img_transform.laplacian import laplacian
+from src.image_transform.laplacian import laplacian
 
 
 def detect_depth(image_path='../images/Eiffle.png'):
