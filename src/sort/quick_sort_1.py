@@ -1,5 +1,5 @@
 
-def quick_sort(arr):
+def quick_sort_1(arr):
     """
     퀵 정렬 (Quick Sort) 알고리즘
 
@@ -18,4 +18,4 @@ def quick_sort(arr):
     middle = [x for x in arr if x == pivot] # 피벗과 같은 값
     right = [x for x in arr if x > pivot] # 피벗보다 큰 값
 
-    return quick_sort(left) + middle + quick_sort(right)
+    return quick_sort_1(left) + middle + quick_sort_1(right)
