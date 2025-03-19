@@ -1,4 +1,4 @@
-from src.sort.quick_sort_2 import quick_sort_2
+from src.sort import heap_sort
 
 
 def start():
@@ -6,4 +6,4 @@ def start():
 
     arr = [10, 7, 8, 9, 1, 5]
     # 테스트
-    print(quick_sort_2(arr, 0, len(arr) - 1))
+    print(heap_sort(arr))
