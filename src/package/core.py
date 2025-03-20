@@ -1,4 +1,4 @@
-from src.sort.radix_sort import radix_sort
+from src.sort import heap_sort
 
 
 def start():
@@ -6,4 +6,4 @@ def start():
 
     arr = [10, 7, 8, 9, 1, 5]
     # 테스트
-    print(radix_sort(arr))
+    print(heap_sort(arr))
