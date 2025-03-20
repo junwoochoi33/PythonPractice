@@ -1,4 +1,4 @@
-from src.sort import heap_sort
+from src.sort.counting_sort import counting_sort
 
 
 def start():
@@ -6,4 +6,4 @@ def start():
 
     arr = [10, 7, 8, 9, 1, 5]
     # 테스트
-    print(heap_sort(arr))
+    print(counting_sort(arr))
