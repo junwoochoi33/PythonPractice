@@ -1,4 +1,4 @@
-from src.sort.counting_sort import counting_sort
+from src.sort.radix_sort import radix_sort
 
 
 def start():
@@ -6,4 +6,4 @@ def start():
 
     arr = [10, 7, 8, 9, 1, 5]
     # 테스트
-    print(counting_sort(arr))
+    print(radix_sort(arr))
