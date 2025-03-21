@@ -1,8 +1,7 @@
-from src.image_transform.gray_scale import gray_scale
-from src.sort import heap_sort
+from src.image_transform.map_depth import map_depth
 
 
 def start():
     print("Application started!")
 
-    gray_scale()
+    map_depth()
