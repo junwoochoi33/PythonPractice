@@ -1,7 +1,8 @@
 from src.image_transform.map_depth import map_depth
+from src.misc.fibonacci_1 import fibonacci_1
 
 
 def start():
     print("Application started!")
 
-    map_depth()
+    print(fibonacci_1(10))
