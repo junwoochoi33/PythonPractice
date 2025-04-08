@@ -1,2 +1,2 @@
 
-__all__ = ["fibonacci_1"]
+__all__ = ["fibonacci_1", "fibonacci_2"]
