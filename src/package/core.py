@@ -1,7 +1,7 @@
-from src.misc.fibonacci_2 import fibonacci_2
+from src.misc.fibonacci_3 import fibonacci_3
 
 
 def start():
     print("Application started!")
 
-    print(fibonacci_2(10))
+    print(fibonacci_3(1000))
